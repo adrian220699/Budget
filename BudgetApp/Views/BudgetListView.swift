@@ -1,0 +1,48 @@
+//
+//  BudgetListView.swift
+//  BudgetApp
+//
+//  Created by Adrian Flores Herrera on 8/18/26.
+//
+
+import SwiftUI
+
+struct BudgetListView: View {
+    
+    let budgetCategoryResults : FetchedResults<BudgetCategory>
+    let onDeleteBudgetCategory: (BudgetCategory) -> Void
+    
+    var body: some View {
+        
+        List {
+            
+            if !budgetCategoryResults.isEmpty {
+                
+                ForEach(budgetCategoryResults) { budgetCategory in
+                    
+                    NavigationLink(value: budgetCategory) {
+                        
+                        HStack {
+                            Text(budgetCategory.title ?? "")
+                            Spacer()
+                            
+                            VStack {
+                                Text(budgetCategory.total as NSNumber, formatter: NumberFormatter.currency)
+                            }
+                            
+                        }
+                    }
+                } .onDelete { IndexSet in
+                    IndexSet.map { budgetCategoryResults[$0]}.forEach(onDeleteBudgetCategory)
+                }
+            } else {
+                Text("No budget categories exists.")
+            }
+            
+        }.navigationDestination(for: BudgetCategory.self) { budgetCategory in
+            BudgetDetailView(budgetCategory: budgetCategory)
+        }
+    }
+}
+
+
