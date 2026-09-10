@@ -72,8 +72,12 @@ struct BudgetDetailView: View {
                 }
             }
             
+            // Display the transaction
+            
+            TransactionListView(request: BudgetCategory.transactionsByCategoryRequest(budgetCategory))
+            
             Spacer()
-        }
+        }.padding()
     }
 }
 
