@@ -16,10 +16,10 @@ Add the following screenshots to the `Screenshots` folder in the root of the rep
 Once added, they will appear here:
 
 <p align="center">
-  <img src="Screenshots/budget-list.png" width="200">
-  <img src="Screenshots/add-budget.png" width="200">
-  <img src="Screenshots/budget-detail.png" width="200">
+  <img src="Screenshots/budget.png" width="200">
+  <img src="Screenshots/budgetDetail.png" width="200">
   <img src="Screenshots/transactions.png" width="200">
+  <img src="Screenshots/balance.png" width="200">
 </p>
 
 ## ✨ Features
