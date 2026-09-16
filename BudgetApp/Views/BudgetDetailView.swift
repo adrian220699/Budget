@@ -72,6 +72,10 @@ struct BudgetDetailView: View {
                 }
             }
             
+            // Display summary of the budget category
+            
+            BudgetSumaryView(budgetCategory: budgetCategory)
+            
             // Display the transaction
             
             TransactionListView(request: BudgetCategory.transactionsByCategoryRequest(budgetCategory))

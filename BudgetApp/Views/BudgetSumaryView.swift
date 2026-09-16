@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct BudgetSumaryView: View {
+    
+    @ObservedObject var budgetCategory : BudgetCategory
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("\(budgetCategory.overSpent ? "Overspent": "Remaining") \(Text(budgetCategory.remainingBudgetTotal as NSNumber, formatter: NumberFormatter.currency))")
+                .frame(maxWidth: .infinity)
+                .fontWeight(.bold)
+                .foregroundStyle(budgetCategory.overSpent ? .red: .green)
+        }
     }
 }
 
-#Preview {
-    BudgetSumaryView()
-}
+//#Preview {
+//    BudgetSumaryView()
+//}

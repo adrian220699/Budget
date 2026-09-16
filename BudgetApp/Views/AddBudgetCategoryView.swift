@@ -53,12 +53,12 @@ struct AddBudgetCategoryView: View {
             
             Form {
                 TextField("Title", text: $title)
-                Slider(value: $total, in: 0...1000, step: 50) {
+                Slider(value: $total, in: 0...2000, step: 50) {
                     Text("Total")
                 } minimumValueLabel: {
                     Text("$0")
                 }  maximumValueLabel: {
-                    Text("$1000")
+                    Text("$2000")
                 }
                 
                 Text(total as NSNumber, formatter:  NumberFormatter.currency)
