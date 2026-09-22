@@ -12,8 +12,11 @@ struct TransactionListView: View {
     
     @FetchRequest var transactions: FetchedResults<Transaction>
     
-    init(request: NSFetchRequest<Transaction>) {
+    let onDeleteTransaction: (Transaction) -> Void
+    
+    init(request: NSFetchRequest<Transaction>, onDeleteTransaction:@escaping (Transaction) -> Void) {
         _transactions = FetchRequest(fetchRequest: request)
+        self.onDeleteTransaction = onDeleteTransaction
     }
     
     var body: some View {
@@ -32,6 +35,8 @@ struct TransactionListView: View {
                         Text(transaction.total as NSNumber, formatter: NumberFormatter.currency)
                         
                     }
+                }.onDelete { offsets in
+                    offsets.map{ transactions[$0]}.forEach(onDeleteTransaction)
                 }
             }
         }
