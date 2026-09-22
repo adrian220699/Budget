@@ -43,6 +43,15 @@ internal class BudgetCategory : NSManagedObject {
         }
     }
     
+    static func byId(_ id: NSManagedObjectID) -> BudgetCategory {
+        let vc  = CoreDataManager.shared.viewContext
+        
+        guard let budgetCategory = vc.object(with: id) as? BudgetCategory  else {
+            fatalError("Id not found")
+        }
+        return budgetCategory
+    }
+    
     static func transactionsByCategoryRequest(_ budgetCategory: BudgetCategory) -> NSFetchRequest<Transaction> {
         
         let request = Transaction.fetchRequest()
